@@ -102,7 +102,7 @@ module.exports = {
                     
                 })
             }else{
-                var sql = `SELECT * FROM users WHERE username = ? AND password = ?;`;
+                var sql = `SELECT * FROM users WHERE username = ? AND password = ? and status= "verified";`;
                 conn.query(sql,[username,hashPassword] ,(err, result) => {
                      // console.log(Error('Error Auth controller'));
                    if(result.length == 0){
@@ -153,6 +153,29 @@ module.exports = {
         }
        
     },
+    getListUser:(req,res,next) => {
+        var sql = `SELECT * FROM users;`;
+        conn.query(sql, (err, result) => {
+            if(err){
+                throw err
+            }
+            // console.log(Error('Error Auth controller'));
+            res.send(result);
+            next()
+        })
+    },
+    changeStatusUser:(req,res,next) => {
+        var {status,id} = req.body
+        var sql = `update users set status = ? where id = ?;`;
+        conn.query(sql,[status,id] ,(err, result) => {
+            if(err){
+                throw err
+            }
+            // console.log(Error('Error Auth controller'));
+            res.send(result);
+            next()
+        })
+    }
   
 }
       

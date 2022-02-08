@@ -24,7 +24,7 @@ app.get('/', (req,res) => {
     res.send('<h1>Welcome to ahlikunci API</h1>');
 })
 
-const { authRouter} = require('./routers');
+const { authRouter,kunciRouter} = require('./routers');
 app.use(function(req, res, next){
   res.setTimeout(250000, function(){
           res.status(408).json({})
@@ -34,6 +34,7 @@ app.use(function(req, res, next){
 });
 
 app.use('/auth', authRouter);
+app.use('/kunci', kunciRouter);
 var httpServer = http.createServer(app);
 // var httpsServer = https.createServer(credentials, app);
 var date = new Date()

@@ -2,7 +2,7 @@ function sqlInjectFormChecker (value,res){
     console.log(value)
     var regexsqlinject = /^([a-z]|[A-Z]|[0-9])[^$#%&*]{4,45}$/
     if(!value.match(regexsqlinject)){
-        res.status(409).send({status: "error", message: `Format data tidak boleh mengandung karakter special sperti ($, #, %, &, dan *), minimal 4 karakter dan maksimal 45 karakter`})
+        res.status(409).send({status: "error", message: `Format data tidak boleh mengandung karakter special sperti ($, #, %, &, + , -, dan *), minimal 4 karakter dan maksimal 45 karakter`})
     }else{
         return value
     }
