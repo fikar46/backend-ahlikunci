@@ -9,7 +9,7 @@ const {sqlInjectFormChecker,sqlInjectEmailChecker} = require('../helpers/sqlInje
 module.exports = {
     getAllTestiomoni:(req,res,next)=>{
        
-        var sql = `SELECT id,kategori,judul,caption,id_user,status_blog,date_create,thumbnail FROM blog
+        var sql = `SELECT * FROM blog
         order by date_create desc
         LIMIT 10 OFFSET ?`;
         var sqlCount = `select count(*) as totalCount from blog`;
@@ -80,7 +80,7 @@ module.exports = {
         })
     },
     getAllLayanan:(req,res,next)=>{
-        var sql = `select * from layanan LIMIT 10 OFFSET ?`;
+        var sql = `select * from layanan order by id desc LIMIT 10 OFFSET ?`;
         var sqlCount = `select count(*) as totalCount from layanan`;
         conn.query(sql,req.body.page,(err,result)=>{
             if(err){
@@ -100,6 +100,17 @@ module.exports = {
 
             })
             
+        })
+    },
+    getAllLyananLandingPage:(req,res,next)=>{
+        var sql = `select * from layanan order by id desc LIMIT 30 OFFSET 0`;
+        conn.query(sql,(err,result)=>{
+            if(err){
+                throw err
+            }
+            cacheSet(req.redis_key, result)
+            res.send(result)
+            next()
         })
     },
     updateStatusLayanan:(req,res,next)=>{
@@ -127,6 +138,66 @@ module.exports = {
         WHERE id = ?`;
         conn.query(sql, [data,id],(err, result) => {
              // console.log(Error('Error Diskusi controller'));
+            res.send(result)
+            next()
+        })
+    },
+    updateCarousell:(req,res,next)=>{
+        var sql = `update carousell set ? 
+        WHERE id = ?`;
+        conn.query(sql, [req.body,req.body.id],(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+             if(err){
+                throw err
+            }
+            res.send(result)
+            next()
+        })
+    },
+    getCarousell:(req,res,next)=>{
+        var sql = `select * from carousell`;
+        conn.query(sql,(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+            res.send(result)
+            next()
+        })
+    },
+    getContact:(req,res,next)=>{
+        var sql = `select * from contact_web`;
+        conn.query(sql,(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+            res.send(result)
+            next()
+        })
+    },
+    updateContact:(req,res,next)=>{
+        var sql = `update contact_web set ? 
+        WHERE id = ?`;
+        conn.query(sql, [req.body,req.body.id],(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+             if(err){
+                throw err
+            }
+            res.send(result)
+            next()
+        })
+    },
+    getMetaLandingPage:(req,res,next)=>{
+        var sql = `select * from meta_landing_page`;
+        conn.query(sql,(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+            res.send(result)
+            next()
+        })
+    },
+    updateMetaLandingPage:(req,res,next)=>{
+        var sql = `update meta_landing_page set ? 
+        WHERE id = ?`;
+        conn.query(sql, [req.body,req.body.id],(err, result) => {
+             // console.log(Error('Error Diskusi controller'));
+             if(err){
+                throw err
+            }
             res.send(result)
             next()
         })
