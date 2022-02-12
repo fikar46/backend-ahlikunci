@@ -202,7 +202,7 @@ module.exports = {
             next()
         })
     },
-    sendEmail=(req,res,next)=>{
+    sendEmail:(req,res,next)=>{
         var {nama,email,pertanyaan,whatsapp,emailAdmin} = req.body;
         var mailOptions = {
             from: 'Zkeys no reply <noreply@siapptn.com>',
