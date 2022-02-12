@@ -5,13 +5,13 @@ const cors = require('cors');
 var fs = require('fs');
 var http = require('http');
 var https = require('https');
-// var privateKey  = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/privkey.pem', 'utf8');
-// var certificate = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/fullchain.pem', 'utf8');
+var privateKey  = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/privkey.pem', 'utf8');
+var certificate = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/fullchain.pem', 'utf8');
 
-// var credentials = {key: privateKey, cert: certificate};
-// var { uploader } = require('./helpers/uploader')
+var credentials = {key: privateKey, cert: certificate};
+var { uploader } = require('./helpers/uploader')
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 2023;
 var app = express({defaultErrorHandler:false});
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -36,9 +36,9 @@ app.use(function(req, res, next){
 app.use('/auth', authRouter);
 app.use('/kunci', kunciRouter);
 var httpServer = http.createServer(app);
-// var httpsServer = https.createServer(credentials, app);
+var httpsServer = https.createServer(credentials, app);
 var date = new Date()
 date.setUTCDate(date.getUTCDate()+7)
 console.log("aktif pada " + date) 
-httpServer.listen(8443, () => console.log('API Aktif di port ' + 2022));
-// httpsServer.listen(port, () => console.log('API Aktif di port ' + port));
+httpServer.listen(2022, () => console.log('API Aktif di port ' + 2022));
+httpsServer.listen(port, () => console.log('API Aktif di port ' + port));
