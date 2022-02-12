@@ -9,7 +9,6 @@ var privateKey  = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/
 var certificate = fs.readFileSync('/etc/letsencrypt/live/api.meylendra.com-0001/fullchain.pem', 'utf8');
 
 var credentials = {key: privateKey, cert: certificate};
-var { uploader } = require('./helpers/uploader')
 
 var port = process.env.PORT || 2023;
 var app = express({defaultErrorHandler:false});
