@@ -202,5 +202,30 @@ module.exports = {
             next()
         })
     },
+    sendEmail=(req,res,next)=>{
+        var {nama,email,pertanyaan,whatsapp,emailAdmin} = req.body;
+        var mailOptions = {
+            from: 'Zkeys no reply <noreply@siapptn.com>',
+            to : emailAdmin,
+            subject : `Pertanyaan dari bapak/ibu ${nama}`,
+            html: `<p><b>Hallo Admin</b></p><br/>
+            <p>Nama pelanggan : ${nama}</p><br/>
+            <p>Email pelanggan : ${email}</p><br/>
+            <p>whatsapp pelanggan : ${whatsapp}</p><br/>
+            <p>Memiliki pertanyaan sebagai berikut</p><br/>
+            <p>${pertanyaan}</p>
+            `
+        }
+
+        transporter.sendMail(mailOptions, (err3, res3) => {
+            if(err3){
+                // res.send({status: 'Error!', message: 'Error sending message'})
+                res.status(409).json({ error: "Email error",message:err3});
+                throw err3;
+            } else {
+                res.status(200).json({ error: false,message:"Email berhasil terkirim"});
+            }
+        })
+    }
 }
       

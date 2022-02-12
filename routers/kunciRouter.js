@@ -20,5 +20,6 @@ router.post('/getcontact', cacheGeneralGet("contact"),kunciController.getContact
 router.post('/updatecontact', cacheGeneralDelete("contact"),kunciController.updateContact);
 router.post('/getmeta', cacheGeneralGet("meta"),kunciController.getMetaLandingPage);
 router.post('/updatemeta', cacheGeneralGet("meta"),kunciController.updateMetaLandingPage);
+router.post('/sendemail', kunciController.sendEmail);
 
 module.exports = router;
