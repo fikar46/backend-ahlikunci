@@ -1,10 +1,5 @@
 let redis = require("redis");
 
-var redisclient = redis.createClient({
-    legacyMode: true
-});
-(async () => {
-    await redisclient.connect();
-})();
+var redisclient = redis.createClient();
 
 module.exports = redisclient;
