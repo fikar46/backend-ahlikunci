@@ -142,12 +142,21 @@ function cacheUpdate(redis_key){
     }
 }
 
-
+function cacheFlushAll(){
+    return function(req,res,next){
+        client.flushall( function (err, success) {
+            if(err) res.status(500).json({error : "redis error"})
+            if(success){
+                next()
+            }
+        });
+    }
+}
 
 
 module.exports = {
     cacheSet,
     cacheGet,cacheUpdate, 
     cacheGeneralGet, cacheGeneralDelete,
-    cacheUniqueGet, cacheUniqueDelete
+    cacheUniqueGet, cacheUniqueDelete,cacheFlushAll
 }

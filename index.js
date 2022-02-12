@@ -40,5 +40,5 @@ var httpServer = http.createServer(app);
 var date = new Date()
 date.setUTCDate(date.getUTCDate()+7)
 console.log("aktif pada " + date) 
-httpServer.listen(8443, () => console.log('API Aktif di port ' + 8443));
+httpServer.listen(8443, () => console.log('API Aktif di port ' + 2022));
 // httpsServer.listen(port, () => console.log('API Aktif di port ' + port));
