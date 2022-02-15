@@ -16,7 +16,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.use(express.static('public'))
-app.use(compression())
+app.use(compression())  
 // ----------------- MYSQL CONFIG -----------------------
 const conn = require('./database'); 
 app.get('/', (req,res) => {
