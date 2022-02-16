@@ -40,8 +40,8 @@ module.exports = {
         })
     },
     updateTestimoni:(req,res,next)=>{
-        var {id,judul,kategori,konten,status_blog,thumbnail,caption} = req.body;
-        var data = {judul ,kategori, konten, status_blog,thumbnail,caption}
+        var {id,judul,kategori,konten,status_blog,thumbnail,caption,youtube} = req.body;
+        var data = {judul ,kategori, konten, status_blog,thumbnail,caption,youtube}
         var sql = `update blog set ? 
         WHERE id = ?`;
         conn.query(sql, [data,id],(err, result) => {
