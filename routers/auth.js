@@ -7,6 +7,7 @@ router.post('/register', authController.register);
 router.post('/signin',  authController.signin);
 router.post('/keeplogin', jwtMiddleware,authController.keeplogin);
 router.get('/getlistadminkunci',authController.getListUser);
+router.post('/changepassword',authController.changePassword);
 router.post('/changestatususer',cacheUniqueDelete('user_data'),authController.changeStatusUser);
 
 module.exports = router;

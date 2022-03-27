@@ -175,7 +175,19 @@ module.exports = {
             res.send(result);
             next()
         })
-    }
+    },
+    changePassword:(req,res,next) => {
+        var {password,id} = req.body
+        var sql = `update users set password = ? where id = ?;`;
+        conn.query(sql,[password,id] ,(err, result) => {
+            if(err){
+                throw err
+            }
+            // console.log(Error('Error Auth controller'));
+            res.send(result);
+            next()
+        })
+    },
   
 }
       
