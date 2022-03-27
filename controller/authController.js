@@ -201,7 +201,7 @@ module.exports = {
            if(result.length>0){
             var mailOptions = {
                 from: 'Zkeys no reply <noreply@siapptn.com>',
-                to : emailAdmin,
+                to : email,
                 subject : `Pertanyaan dari bapak/ibu ${nama}`,
                 html: `<p><b>Hallo  ${email}</b></p><br/>
                 <p>Berikut link untuk update password</p><br/>
