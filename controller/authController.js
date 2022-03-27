@@ -178,8 +178,10 @@ module.exports = {
     },
     changePassword:(req,res,next) => {
         var {password,id} = req.body
+        const hashPassword = Crypto.createHmac('sha256', "abcd123")
+        .update(password).digest('hex');
         var sql = `update users set password = ? where id = ?;`;
-        conn.query(sql,[password,id] ,(err, result) => {
+        conn.query(sql,[hashPassword,id] ,(err, result) => {
             if(err){
                 throw err
             }
