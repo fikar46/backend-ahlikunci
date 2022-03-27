@@ -202,7 +202,7 @@ module.exports = {
             var mailOptions = {
                 from: 'Zkeys no reply <noreply@siapptn.com>',
                 to : email,
-                subject : `Pertanyaan dari bapak/ibu ${nama}`,
+                subject : `Lupa password admin zkeys.id`,
                 html: `<p><b>Hallo  ${email}</b></p><br/>
                 <p>Berikut link untuk update password</p><br/>
                 <a href="zkeys.id/change-password-forget?id=${resul[0].id}"></a><br/>
