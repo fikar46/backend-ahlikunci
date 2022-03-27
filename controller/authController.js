@@ -190,6 +190,42 @@ module.exports = {
             next()
         })
     },
+    forgetPassword:(req,res,next)=>{
+        var {email} = req.body;
+        var sql = `select * from users where email = ?;`;
+        conn.query(sql,[email] ,(err, result) => {
+            if(err){
+                throw err
+            }
+            // console.log(Error('Error Auth controller'));
+           if(result.length>0){
+            var mailOptions = {
+                from: 'Zkeys no reply <noreply@siapptn.com>',
+                to : emailAdmin,
+                subject : `Pertanyaan dari bapak/ibu ${nama}`,
+                html: `<p><b>Hallo  ${email}</b></p><br/>
+                <p>Berikut link untuk update password</p><br/>
+                <a href="zkeys.id/change-password-forget?id=${resul[0].id}"></a><br/>
+                `
+            }
+    
+            transporter.sendMail(mailOptions, (err3, res3) => {
+                if(err3){
+                    // res.send({status: 'Error!', message: 'Error sending message'})
+                    res.status(409).json({ error: "Email error",message:err3});
+                    throw err3;
+                } else {
+                    res.status(200).json({ error: false,message:"Email berhasil terkirim"});
+                    next()
+                }
+            })
+           }else{
+                res.status(409).json({ error: "Email not found",message:"Email tidak ditemukan"});
+                next()
+           }
+        })
+       
+    }
   
 }
       
