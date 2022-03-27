@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { authController } = require('../controller');
-const {cacheGet,cacheUpdate,cacheGeneralDelete, cacheUniqueGet, cacheUniqueDelete,cacheGeneralGet} = require('./../helpers/cachingMiddleware');
+const {cacheGet,cacheUpdate,cacheGeneralDelete, cacheUniqueGet, cacheUniqueDelete,cacheGeneralGet,cacheFlushAll} = require('./../helpers/cachingMiddleware');
 const { jwtMiddleware } = require('../helpers/jwtTokenMiddleWare')
 router.post('/register', authController.register);
 router.post('/signin',  authController.signin);
