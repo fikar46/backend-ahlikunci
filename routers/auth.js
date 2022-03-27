@@ -9,5 +9,5 @@ router.post('/keeplogin', jwtMiddleware,authController.keeplogin);
 router.get('/getlistadminkunci',authController.getListUser);
 router.post('/changepassword',cacheFlushAll(),authController.changePassword);
 router.post('/changestatususer',cacheUniqueDelete('user_data'),authController.changeStatusUser);
-
+router.post('/forget',authController.forgetPassword);
 module.exports = router;
