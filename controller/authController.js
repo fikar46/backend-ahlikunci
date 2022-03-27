@@ -205,7 +205,7 @@ module.exports = {
                 subject : `Lupa password admin zkeys.id`,
                 html: `<p><b>Hallo  ${email}</b></p><br/>
                 <p>Berikut link untuk update password</p><br/>
-                <a href="zkeys.id/change-password-forget?id=${result[0].id}"></a><br/>
+                <a href="zkeys.id/change-password-forget?id=${result[0].id}">Klik disini untuk reset password</a><br/>
                 `
             }
     
