@@ -10,7 +10,7 @@ router.post('/updatestatustestimoni',cacheFlushAll(), kunciController.updateStat
 router.post('/gettestimonibyid', cacheUniqueGet("testimoni"),kunciController.getTestimoniById);
 router.post('/createlayanan', cacheFlushAll(),kunciController.createLayanan);
 router.post('/getlayanan', cacheUniqueGet("layanan_page"),kunciController.getAllLayanan);
-router.post('/getlayananlandingpage', cacheGeneralGet("layanan_landingpage"),kunciController.getAllLyananLandingPage);
+router.post('/getlayananlandingpage', kunciController.getAllLyananLandingPage);
 router.post('/updatestatuslayanan', cacheFlushAll(),kunciController.updateStatusLayanan);
 router.post('/updatelayanan', cacheFlushAll(),kunciController.updateLayanan);
 router.post('/getlayananbyid', cacheUniqueGet("layanan"),kunciController.getLayananById);
