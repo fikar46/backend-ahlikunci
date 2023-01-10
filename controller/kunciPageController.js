@@ -103,7 +103,7 @@ module.exports = {
         })
     },
     getAllLyananLandingPage:(req,res,next)=>{
-        var sql = `select * from layanan where status_layanan = 'active' order by id desc LIMIT 30 OFFSET 0`;
+        var sql = `select * from layanan where status_layanan = 'active' order by id desc LIMIT 15 OFFSET 0`;
         conn.query(sql,(err,result)=>{
             if(err){
                 throw err
