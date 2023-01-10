@@ -108,7 +108,7 @@ module.exports = {
             if(err){
                 throw err
             }
-            cacheSet(req.redis_key, result)
+            // cacheSet(req.redis_key, result)
             res.send(result)
             next()
         })
